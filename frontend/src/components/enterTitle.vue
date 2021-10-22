@@ -5,7 +5,7 @@
         <v-col cols="8" align="center">
           <v-card class="primary" dark>
             <v-card-title class="green">
-              Enter Crowing Title
+              Enter Title
             </v-card-title>
             <v-text-field class="ma-4" label="Title" outlined></v-text-field>
           </v-card>
