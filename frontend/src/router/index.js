@@ -2,7 +2,9 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import enterTitle from "../components/enterTitle.vue";
 import enterURL from "../components/enterURL.vue";
-import scriptBlocks from "../components/scriptBlocks.vue";
+import choicePage from "../components/choicePage.vue";
+import txtPage from "../components/txtPage.vue";
+import imgPage from "../components/imgPage.vue";
 
 Vue.use(VueRouter);
 
@@ -18,9 +20,19 @@ const routes = [
     component: enterURL,
   },
   {
-    path: "/scriptBlocks",
-    name: "scriptBlocks",
-    component: scriptBlocks,
+    path: "/choicePage",
+    name: "choicePage",
+    component: choicePage,
+  },
+  {
+    path: "/txtPage",
+    name: "txtPage",
+    component: txtPage,
+  },
+  {
+    path: "/imgPage",
+    name: "imgPage",
+    component: imgPage,
   },
 ];
 

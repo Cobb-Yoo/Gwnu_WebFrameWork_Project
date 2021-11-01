@@ -5,12 +5,12 @@
         <span class="router-span pa-3 ma-1"> title </span>
       </router-link>
 
-      <router-link to="/enterURL">
+      <router-link to="/enterUrl">
         <span class="router-span pa-3 ma-1"> url </span>
       </router-link>
 
-      <router-link to="/scriptBlocks">
-        <span class="router-span pa-3 ma-1"> scriptBlocks </span>
+      <router-link to="/choicePage">
+        <span class="router-span pa-3 ma-1"> choice </span>
       </router-link>
     </v-app-bar>
 
