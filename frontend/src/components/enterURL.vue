@@ -16,12 +16,6 @@
         </v-card>
       </v-col>
     </v-row>
-
-    <v-row>
-      <v-col align="center">
-        {{ targetURL }}
-      </v-col>
-    </v-row>
   </v-container>
 </template>
 

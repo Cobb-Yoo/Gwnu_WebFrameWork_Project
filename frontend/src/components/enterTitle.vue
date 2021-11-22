@@ -1,7 +1,7 @@
 <template>
   <v-container class="contentsLayout">
     <v-row justify="center">
-      <v-col cols="5" align="center" class="pt-16 ">
+      <v-col cols="5" align="center" class="mt-15">
         <v-card class="primary" dark>
           <v-card-title class="green">
             Title
@@ -16,22 +16,26 @@
         </v-card>
       </v-col>
     </v-row>
-
     <v-row>
-      <v-col align="center">
-        {{ crowingTitle }}
+      <v-col>
+        <v-btn @click="setTitle(crowingTitle)"> </v-btn>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "enterTitle",
   data() {
     return {
       crowingTitle: "",
     };
+  },
+  methods: {
+    ...mapActions(["setTitle"]),
   },
 };
 </script>

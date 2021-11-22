@@ -5,6 +5,7 @@ import enterURL from "../components/enterURL.vue";
 import choicePage from "../components/choicePage.vue";
 import txtPage from "../components/txtPage.vue";
 import imgPage from "../components/imgPage.vue";
+import Test from "../views/test.vue";
 
 Vue.use(VueRouter);
 
@@ -33,6 +34,11 @@ const routes = [
     path: "/imgPage",
     name: "imgPage",
     component: imgPage,
+  },
+  {
+    path: "/test",
+    name: "test",
+    component: Test,
   },
 ];
 

@@ -4,9 +4,15 @@
       <v-col cols="8">
         <img class="image-fit" :src="imgs[idx]" />
       </v-col>
+    </v-row>
 
-      <v-btn @click="left"> left</v-btn>
-      <v-btn @click="right"> right</v-btn>
+    <v-row justify="center">
+      <v-col cols="6" align="center">
+        <v-btn large @click="left" width="400"> left</v-btn>
+      </v-col>
+      <v-col cols="6" align="center">
+        <v-btn large @click="right" width="400"> right</v-btn>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -16,11 +22,10 @@ export default {
   name: "imgPage",
   data() {
     return {
-      test: require("../img/a.jpg"),
       imgs: [
-        require("../img/a.jpg"),
-        require("../img/b.jpg"),
-        require("../img/c.jpg"),
+        require("../img/1.png"),
+        require("../img/2.png"),
+        require("../img/3.png"),
       ],
       idx: 0,
     };
