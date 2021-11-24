@@ -1,6 +1,6 @@
 <template>
-  <v-row justify="center" class="mt-16">
-    <v-col cols="7" class="mt-5">
+  <v-row justify="center" class="mt-8">
+    <v-col cols="6" class="mt-5">
       <v-stepper v-model="e1">
         <v-stepper-header>
           <v-stepper-step :complete="e1 > 1" step="1">
@@ -47,7 +47,7 @@
               Continue
             </v-btn>
 
-            <v-btn text @click="cancel()" class="ml-1">
+            <v-btn text @click="cancel('취소합니다')" class="ml-1">
               Cancel
             </v-btn>
           </v-stepper-content>
@@ -59,7 +59,7 @@
                   <v-text-field
                     v-model="url"
                     color="purple darken-2"
-                    label="Title"
+                    label="URL"
                     required
                   >
                   </v-text-field>
@@ -78,23 +78,45 @@
               Continue
             </v-btn>
 
-            <v-btn text @click="cancel()">
+            <v-btn text @click="cancel('취소합니다')">
               Cancel
             </v-btn>
           </v-stepper-content>
 
           <v-stepper-content step="3">
-            <v-card
-              class="mb-12"
-              color="grey lighten-1"
-              height="300px"
-            ></v-card>
+            <v-row justify="center" class="mb-1">
+              <v-col cols="6" class="pa-1">
+                <v-card class="choiceCard ma-4">
+                  <v-card-title>
+                    Image
+                  </v-card-title>
 
-            <v-btn color="red" @click="e1 = 1">
+                  <v-card-text>
+                    대충이걸 누르면 이미지를 크롤링할꺼에요 <br />
+                    그런설명 <br />
+                  </v-card-text>
+                </v-card>
+              </v-col>
+
+              <v-col cols="6" class="pa-1">
+                <v-card class="choiceCard ma-4">
+                  <v-card-title>
+                    Text
+                  </v-card-title>
+
+                  <v-card-text>
+                    대충이걸 누르면 텍스트를 크롤링할꺼에요 <br />
+                    그런설명 <br />
+                  </v-card-text>
+                </v-card>
+              </v-col>
+            </v-row>
+
+            <v-btn color="red" @click="checkData()">
               Start
             </v-btn>
 
-            <v-btn text @click="cancel()" class="ml-1">
+            <v-btn text @click="cancel('취소합니다')" class="ml-1">
               Cancel
             </v-btn>
           </v-stepper-content>
@@ -105,6 +127,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   data() {
     return {
@@ -115,16 +139,39 @@ export default {
     };
   },
   methods: {
-    cancel() {
+    ...mapActions(["setData"]),
+    cancel(str) {
+      alert(str);
       this.e1 = 1;
+      this.title = "";
+      this.url = "";
+      this.type = "";
     },
-    moveNext(data) {
-      if (data == "") {
-        alert("빈칸이 있습니다. 처음으로 돌아갑니다.");
+    moveNext() {
+      this.e1 = this.e1 + 1;
+    },
+    checkData() {
+      if (this.title == "" || this.url == "" || this.type == "fdf") {
+        this.cancel("비어있는 값이 있습니다.");
         return;
       }
-      this.e1 = this.e1 + 1;
+
+      const payload = {
+        title: this.title,
+        url: this.url,
+        type: this.type,
+      };
+
+      console.log(payload);
+
+      this.setData(payload);
     },
   },
 };
 </script>
+
+<style>
+.choiceCard {
+  height: 316px;
+}
+</style>

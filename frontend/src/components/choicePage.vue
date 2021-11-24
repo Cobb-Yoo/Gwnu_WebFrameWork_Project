@@ -32,6 +32,6 @@ export default {
   top: 100px;
 }
 .choiceCard {
-  height: 400px;
+  height: 316px;
 }
 </style>
