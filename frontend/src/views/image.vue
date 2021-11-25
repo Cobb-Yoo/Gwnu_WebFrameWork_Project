@@ -85,27 +85,15 @@ export default {
 
       const link = document.createElement("a");
       link.href = this.url[idx].slice(8);
-      link.setAttribute("download", idx);
+
+      link.download = idx + ".png";
+      //link.setAttribute("download", idx + ".png");
 
       console.log(link);
 
       document.body.appendChild(link);
       link.click();
-      //document.body.removeChild(link);
-    },
-    downlaods() {
-      for (var idx = 0; idx < 5; idx++) {
-        console.log(idx);
-
-        const link = document.createElement("a");
-        link.href = this.url[idx].slice(8);
-        link.setAttribute("download", idx);
-
-        console.log(link);
-
-        document.body.appendChild(link);
-        link.click();
-      }
+      document.body.removeChild(link);
     },
   },
   created() {
