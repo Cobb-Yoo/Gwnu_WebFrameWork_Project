@@ -10,7 +10,7 @@ export default new Vuex.Store({
   },
   mutations: {
     setDataInState(state, payload) {
-      state.title = payload;
+      state.info = payload;
     },
   },
   actions: {
@@ -19,6 +19,11 @@ export default new Vuex.Store({
 
       if (payload.to == "img") router.push("/" + "img");
       else if (payload.to == "text") router.push("/" + "text");
+    },
+  },
+  getters: {
+    getInfo: (state) => {
+      return state.info;
     },
   },
 });

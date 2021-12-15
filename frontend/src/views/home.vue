@@ -155,8 +155,6 @@ export default {
         to: data,
       };
 
-      console.log(payload);
-
       this.setData(payload);
     },
   },
