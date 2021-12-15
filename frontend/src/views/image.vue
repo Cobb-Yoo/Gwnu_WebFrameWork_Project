@@ -16,7 +16,7 @@
 
     <v-row justify="center">
       <v-col cols="6" class="pt-0">
-        <v-img :src="url[idx]" contain height="650" />
+        <v-img :src="imgUrlList[idx]" contain height="650" />
       </v-col>
     </v-row>
 
@@ -58,7 +58,7 @@ export default {
       //   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUa4aFmJrSoi0jj-Mt-mGZvOXTJ6Of-FM2CA&usqp=CAU",
       //   "http://thetravelnews.co.kr/wp-content/uploads/2021/05/%EC%82%AC%EC%A7%84_%EC%95%84%EC%9D%B4%EC%9C%A0_EDAM-ent.jpeg",
       // ],
-      url: [],
+      imgUrlList: [],
     };
   },
   methods: {
@@ -74,7 +74,9 @@ export default {
         this.idx = this.url.length - 1;
       }
     },
+    //======================================
     startCrawling(url) {
+      console.log(url);
       /*
        * url이 크롤링 대상이 되는 url
        *
@@ -83,9 +85,12 @@ export default {
        *
        *
        *
-       * url = ???; 여기에는 이미지 데이터를 넣는다.
+       * imgUrlList = ???; 여기에는 이미지 데이터를 넣는다.
        */
     },
+
+    //======================================
+
     // imgChoice(e) {
     //   console.log("this is imgSave");
     //   console.log(this.url[e]);
@@ -112,11 +117,11 @@ export default {
     // },
   },
   computed: {
-    ...mapGetters({ info: "getInfo" }),
+    ...mapGetters({ targetUrl: "getUrl" }),
   },
   created() {
     //this.getImgList();
-    this.startCrawling(this.info.url);
+    this.startCrawling(this.targetUrl);
   },
 };
 </script>

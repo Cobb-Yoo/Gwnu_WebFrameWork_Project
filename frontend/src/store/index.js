@@ -22,8 +22,8 @@ export default new Vuex.Store({
     },
   },
   getters: {
-    getInfo: (state) => {
-      return state.info;
+    getUrl: (state) => {
+      return state.info.url;
     },
   },
 });
