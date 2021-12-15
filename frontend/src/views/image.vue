@@ -41,6 +41,19 @@
         </v-btn>
       </v-row>
     </v-footer>
+
+    <v-dialog v-model="dialog" persistent width="300">
+      <v-card color="primary" dark>
+        <v-card-text>
+          Please stand by
+          <v-progress-linear
+            indeterminate
+            color="white"
+            class="mb-0"
+          ></v-progress-linear>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
   </v-card>
 </template>
 
@@ -59,6 +72,7 @@ export default {
       //   "http://thetravelnews.co.kr/wp-content/uploads/2021/05/%EC%82%AC%EC%A7%84_%EC%95%84%EC%9D%B4%EC%9C%A0_EDAM-ent.jpeg",
       // ],
       imgUrlList: [],
+      dialog: false,
     };
   },
   methods: {
@@ -76,6 +90,8 @@ export default {
     },
     //======================================
     startCrawling(url) {
+      this.dialog = true;
+
       console.log(url);
       /*
        * url이 크롤링 대상이 되는 url
@@ -87,6 +103,7 @@ export default {
        *
        * imgUrlList = ???; 여기에는 이미지 데이터를 넣는다.
        */
+      this.dialog = false;
     },
 
     //======================================

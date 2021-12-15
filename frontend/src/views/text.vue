@@ -73,72 +73,7 @@ export default {
   data() {
     return {
       dialog: false,
-      txtList: [
-        {
-          String: "test1",
-          path: "test1",
-        },
-        {
-          String: "test2",
-          path: "test2",
-        },
-        {
-          String: "test3",
-          path: "test3",
-        },
-        {
-          String: "test4",
-          path: "test4",
-        },
-        {
-          String: "test1",
-          path: "test1",
-        },
-        {
-          String: "test2",
-          path: "test2",
-        },
-        {
-          String: "test3",
-          path: "test3",
-        },
-        {
-          String: "test4",
-          path: "test4",
-        },
-        {
-          String: "test1",
-          path: "test1",
-        },
-        {
-          String: "test2",
-          path: "test2",
-        },
-        {
-          String: "test3",
-          path: "test3",
-        },
-        {
-          String: "test4",
-          path: "test4",
-        },
-        {
-          String: "test1",
-          path: "test1",
-        },
-        {
-          String: "test2",
-          path: "test2",
-        },
-        {
-          String: "test3",
-          path: "test3",
-        },
-        {
-          String: "test4",
-          path: "test4",
-        },
-      ],
+      txtList: [],
       txtHeader: [
         { text: "삭제?", value: "" },
         { text: "값", value: "String" },
