@@ -16,7 +16,9 @@ export default new Vuex.Store({
   actions: {
     setData({ commit }, payload) {
       commit("setDataInState", payload);
-      router.push("/" + "img");
+
+      if (payload.to == "img") router.push("/" + "img");
+      else if (payload.to == "text") router.push("/" + "text");
     },
   },
 });

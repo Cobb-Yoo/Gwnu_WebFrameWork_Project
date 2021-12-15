@@ -86,7 +86,7 @@
           <v-stepper-content step="3">
             <v-row justify="center" class="mb-1">
               <v-col cols="6" class="pa-1">
-                <v-card class="choiceCard ma-4">
+                <v-card class="choiceCard ma-4" @click="checkData('img')">
                   <v-card-title>
                     Image
                   </v-card-title>
@@ -99,7 +99,7 @@
               </v-col>
 
               <v-col cols="6" class="pa-1">
-                <v-card class="choiceCard ma-4">
+                <v-card class="choiceCard ma-4" @click="checkData('text')">
                   <v-card-title>
                     Text
                   </v-card-title>
@@ -111,14 +111,6 @@
                 </v-card>
               </v-col>
             </v-row>
-
-            <v-btn color="red" @click="checkData()">
-              Start
-            </v-btn>
-
-            <v-btn text @click="cancel('취소합니다')" class="ml-1">
-              Cancel
-            </v-btn>
           </v-stepper-content>
         </v-stepper-items>
       </v-stepper>
@@ -150,7 +142,7 @@ export default {
     moveNext() {
       this.e1 = this.e1 + 1;
     },
-    checkData() {
+    checkData(data) {
       if (this.title == "" || this.url == "" || this.type == "fdf") {
         this.cancel("비어있는 값이 있습니다.");
         return;
@@ -160,6 +152,7 @@ export default {
         title: this.title,
         url: this.url,
         type: this.type,
+        to: data,
       };
 
       console.log(payload);
