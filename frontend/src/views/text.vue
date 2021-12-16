@@ -68,6 +68,9 @@
 
 <script>
 import { mapGetters } from "vuex";
+import axios from 'axios';
+import cheerio from 'cheerio';
+
 
 export default {
   data() {
@@ -82,14 +85,90 @@ export default {
     };
   },
   methods: {
-    startCrawling(url) {
+      //딜레이 함수
+      delay(ms) {
+        return new Promise(function(resolve) {
+          setTimeout(function(){
+            resolve();
+          },ms);
+        });
+      },
+
+      //HTML 파싱
+      getHTML(url) {
+          return new Promise(resolve=>{
+            this.delay(3000).then(function() {
+              axios.get(url).then(function(data) {
+                alert(data);
+                resolve(data);
+              });
+            });
+        })    
+      },
+
+      //xpath 경로 반환
+      getPathTo(element) {
+        if (element.tagName == 'HTML')
+          return '/HTML[1]';
+        if (element===document.body)
+          return '/HTML[1]/BODY[1]';
+
+        var ix= 0;
+        var siblings= element.parentNode.childNodes;
+        for (var i= 0; i<siblings.length; i++) {
+          var sibling= siblings[i];
+          if (sibling===element)
+            return this.getPathTo(element.parentNode)+'/'+element.tagName+'['+(ix+1)+']';
+          if (sibling.nodeType===1 && sibling.tagName===element.tagName)
+            ix++;
+        }
+      },
+
+      //JSON 형식으로 반환
+      makeJSON(url) {
+        this.getHTML(url).then(html => {
+          var resultList = [];
+          const $ = cheerio.load(html.data);
+
+          var body_text = $("body").text();
+          alert(body_text);
+          body_text = body_text.split("\n");
+          for (var i=0; i<body_text.length; i++){
+            let result = {};
+              if (body_text[i].trim() !=""){       //정상적인 텍스트일 경우 
+                var contain_list = $(":contains("+ body_text[i] +")");      //텍스트를 포함하는 element들을 contain_list에 저장
+                
+                //path가 가장 긴 element를 선택
+                var endElement = contain_list[0];
+                for (var j=1; j<contain_list.length; j++){
+                  var length_a = this.getPathTo(endElement).length;
+                  var length_b = this.getPathTo(contain_list[j]).length;
+                  if (length_a<length_b){
+                    endElement = contain_list[j];
+                  }
+                }
+                result['no'] = String(i);
+                result['path'] = this.getPathTo(endElement);
+                result['string'] = body_text[i];
+              }
+            resultList.push(result);
+          }
+          return resultList;
+        })
+      .then(res => {
+        var result_json = JSON.stringify(res);
+        return result_json;
+      });
+    },
+      startCrawling(url) {
       this.dialog = true;
 
       console.log(url);
-      //txtList = ???
 
+      var txtList = this.makeJSON(url);
+      alert(txtList);
       this.dialog = false;
-    },
+    }
   },
   computed: {
     ...mapGetters({ targetUrl: "getUrl" }),
